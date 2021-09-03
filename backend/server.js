@@ -1,5 +1,12 @@
+
+console.log('voila du code javascript!');
+
 const http = require('http');
 
-const server = http.createServer();
+const app = require('./app');
 
-server.listen(promess.env.PORT || 3000);
+app.set('port', 3000);
+
+const server = http.createServer(app);
+
+server.listen(3000);
