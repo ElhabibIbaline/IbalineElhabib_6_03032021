@@ -1,5 +1,5 @@
 
-//créer le router correspondnat
+//créer le router correspondant
 
 //Importer express pr créer un Router
 const express = require('express');
