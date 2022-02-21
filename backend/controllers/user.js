@@ -4,7 +4,7 @@
 const bcrypt = require("bcrypt");
 
 //Importer jwt
-const jwt =require ('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 // Importer model User car on va enregistrer et lire des users ds ce mdlw
 const User = require("../models/User");
@@ -43,7 +43,7 @@ exports.login = (req, res, next) => {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
       }
 
-      //- Utilisation de bcrypt pr comparer le mp envoyé par le user qui assaie de se connecter avec le hash qui est enregisté avec le user 
+      //- Utilisation de bcrypt pr comparer le mp envoyé par le user qui assaie de se connecter avec le hash qui est enregisté avec le user
       bcrypt
         .compare(req.body.password, user.password)
 
@@ -59,23 +59,22 @@ exports.login = (req, res, next) => {
           - On va renvoyer un ojet json qui contiendra un userId qui est l'identifiant de l'utilisateur ds la base
           - Envoi d'un TOKEN qui sera pr l'instant une simple chaine de caractere
         */
-       
-    //--Au lieu d'envoyer simplement une chaine de caractere (token: "TOKEN") on va appeller une f de jwt qui est la f sign qui prend +ieurs arguments
+
+          //--Au lieu d'envoyer simplement une chaine de caractere (token: "TOKEN") on va appeller une f de jwt qui est la f sign qui prend +ieurs arguments
           res.status(200).json({
             userId: user._id,
             // token: "TOKEN",
             token: jwt.sign(
-               //- le premier argument c les données qu'on veut encoder à l'interieur de ce token
+              //- le premier argument c les données qu'on veut encoder à l'interieur de ce token
               { userId: user._id },
-           //-Le 2eme argument ce la clé secrete de l'encodage          
+              //-Le 2eme argument ce la clé secrete de l'encodage
               "RANDOM_TOKEN_SECRET",
-               //-le 3eme argument qu'on veut rajouter c un argument de configuration pour appliquer une expiration au token
-              { expiresIn: '24' }
-              )
-        });
-      })
+              //-le 3eme argument qu'on veut rajouter c un argument de configuration pour appliquer une expiration au token
+              { expiresIn: "24" }
+            ),
+          });
+        })
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
 };
-
