@@ -3,6 +3,9 @@ const express = require("express");
 // enregistrer le router dans l'application
 const userRoutes = require("./routes/user");
 
+// enregistrer le router dans l'application
+const sauceRoutes = require("./routes/sauce");
+
 const mongoose = require("./db/db");
 
 const app = express();
@@ -26,5 +29,8 @@ app.use((req, res, next) => {
 
 // Enreistrer les routes ==>la route attendu par le frontend est '/api/auth'
 app.use("/api/auth", userRoutes);
+
+// Enreistrer la route
+app.use("/api/sauces", sauceRoutes);
 
 module.exports = app;
