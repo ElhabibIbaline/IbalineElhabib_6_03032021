@@ -8,6 +8,8 @@ const sauceRoutes = require("./routes/sauce");
 
 const mongoose = require("./db/db");
 
+const path = require('path');
+
 const app = express();
 
 //Bodyparser est inclus ds express à partir de la version 4.16 ==> Utilisez ( express.json() ) pour analyser le corps de la requête.
@@ -26,6 +28,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Enreistrer les routes ==>la route attendu par le frontend est '/api/auth'
 app.use("/api/auth", userRoutes);

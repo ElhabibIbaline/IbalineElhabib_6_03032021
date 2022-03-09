@@ -71,7 +71,7 @@ exports.login = (req, res, next) => {
               //-Le 2eme argument ce la clé secrete de l'encodage
               "RANDOM_TOKEN_SECRET",
               //-le 3eme argument qu'on veut rajouter c un argument de configuration pour appliquer une expiration au token
-              { expiresIn: "24" }
+              { expiresIn: "24h" }
             ),
           });
         })

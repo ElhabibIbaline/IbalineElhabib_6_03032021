@@ -9,8 +9,9 @@ const router = express.Router();
 const sauceCtrl = require('../controllers/sauce.js');
 
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config')
 
-router.post('/', auth, sauceCtrl.createSauce);
+router.post('/', auth, multer, sauceCtrl.createSauce);
 
 // Renvoie la sauce avec l’_id fourni, affiche une seule sauce.
 router.get('/:id', sauceCtrl.getOneSauce);
