@@ -8,7 +8,9 @@ const router = express.Router();
 // importer le controller pr associer les f aux differentes routes
 const sauceCtrl = require('../controllers/sauce.js');
 
-router.post('/', sauceCtrl.createSauce);
+const auth = require('../middleware/auth');
+
+router.post('/', auth, sauceCtrl.createSauce);
 
 // Renvoie la sauce avec l’_id fourni, affiche une seule sauce.
 router.get('/:id', sauceCtrl.getOneSauce);
