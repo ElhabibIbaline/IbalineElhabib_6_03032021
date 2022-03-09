@@ -34,6 +34,7 @@ exports.signup = (req, res, next) => {
 */
 exports.login = (req, res, next) => {
   //- Utilisation de la methode findOne pr trouver un seul utilisateur de la bdd
+  console.log(req.body.email)
   User.findOne({ email: req.body.email })
 
     //- Ds le then on dois verifier si on a recupré un user ou non
