@@ -9,8 +9,16 @@ const jwt = require("jsonwebtoken");
 // Importer model User car on va enregistrer et lire des users ds ce mdlw
 const User = require("../models/User");
 
+//le package dotenv pour la gestion des variables d'environnement
+require('dotenv').config();
+
+//verifier les infos envoyées avant utilisation 
+
 // La f signup pour l'enregistrement des nouveaux utilsateurs
 exports.signup = (req, res, next) => {
+  if (req.body.password === undefined || req.body.email === undefined ) {
+    return res.status(400)
+  }
   // Hasher le mp et créer un new user avec le mp crypté...
   bcrypt
     .hash(req.body.password, 10)
@@ -53,7 +61,7 @@ exports.login = (req, res, next) => {
         //- On reourner une erreur 'mp incorrect' car on a bien trouvé le user mais la comparaison a retournée false
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error: "Mot de passe incorrect !" });
+            return res.status(401).json({ error: "Mot de passe ou email non valide !" });//! mp et email non valid!?
           }
           /*
           - Si on arrive ici c que la comparaison a retourner true et ds ce cas la on va envoyer un statut 200 pr une bonne connection
@@ -68,8 +76,8 @@ exports.login = (req, res, next) => {
             token: jwt.sign(
               //- le premier argument c les données qu'on veut encoder à l'interieur de ce token
               { userId: user._id },
-              //-Le 2eme argument ce la clé secrete de l'encodage
-              "RANDOM_TOKEN_SECRET",
+              //-Le 2eme argument ce la clé secrete de l'encodage /---> 1) il faut que ça soit caché et on veut pas que ça soit ds le code
+              process.env.CLE_ENCODAGE,
               //-le 3eme argument qu'on veut rajouter c un argument de configuration pour appliquer une expiration au token
               { expiresIn: "24h" }
             ),
