@@ -23,20 +23,20 @@ L'objectif est de créer le backend de l'application, [le frontend](https://gith
 
 ## Pour lancer l'application:
 
-Pour lancer le front: 
+Pour lancer le front:
 1. Dans un terminal, accéder au dossier frontend
 2. Executez la commande npm install 
 3. Executez la commande npm start  
 Le frontend se lancera automatiquement sur le port:8081
 
-Pour démarrer le server: 
+Pour lancer le backend:
 1. Acceder au dossier backend 
 2. Ajouter un fichier de configuration ".env" à la racine du backend. A l'intérieur il faut définir ces deux variables d'environnement:  
-  * DB_CONNECT = "XXXX"
-  * CLE_ENCODAGE = "XXX"
+  - DB_CONNECT = "XXXX"  
+  - CLE_ENCODAGE = "XXX"  
 3. Ajouter un dossier nommé images au backend
 2. Ouvrir un terminal dans le dossier backend et executez la commande npm install
-3. Ensuite executez la commande node server pou demarrer le server et se connecter à la BDD
+3. Ensuite executez la commande node server pou demarrer le server et se connecter à la BDD  
 Si tout fonctionne bien vous allez voir afficher dans le terminal le message suivant: Connection à mongoDB réussie
 
 ## Pièce jointe : 
